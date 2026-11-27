@@ -93,6 +93,10 @@ class SongExportService {
     }
   }
 
+  /// Saves any file through the system save dialog.
+  Future<bool> exportFile(File source, String fileName) =>
+      _saveFile(source, fileName);
+
   Future<bool> _saveFile(File source, String fileName) async {
     final path = await FilePicker.saveFile(
       dialogTitle: 'Export from Demixr',

@@ -24,7 +24,7 @@ class HomeScreen extends StatelessWidget {
             final horizontalPadding = isDesktop
                 ? (isCompactDesktop ? 32.0 : 48.0)
                 : 20.0;
-            final action = Button(
+            final unmixButton = Button(
               'Unmix a new song',
               icon: const Icon(
                 Icons.add_rounded,
@@ -32,6 +32,25 @@ class HomeScreen extends StatelessWidget {
               ),
               textSize: 16,
               onPressed: () => Get.toNamed('/demixing'),
+            );
+            final action = Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                unmixButton,
+                const SizedBox(height: 10),
+                Button(
+                  'AutoMix two songs',
+                  color: ColorPalette.surfaceContainerHigh,
+                  textColor: ColorPalette.onSurface,
+                  icon: const Icon(
+                    Icons.auto_awesome_rounded,
+                    color: ColorPalette.onSurface,
+                  ),
+                  textSize: 16,
+                  onPressed: () => Get.toNamed('/automix'),
+                ),
+              ],
             );
 
             return Center(

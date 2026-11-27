@@ -1,8 +1,10 @@
 import 'package:demixr_app/models/duration_adapter.dart';
 import 'package:demixr_app/models/unmixed_song.dart';
+import 'package:demixr_app/providers/automix_provider.dart';
 import 'package:demixr_app/providers/library_provider.dart';
 import 'package:demixr_app/providers/model_provider.dart';
 import 'package:demixr_app/providers/player_provider.dart';
+import 'package:demixr_app/screens/automix/automix_screen.dart';
 import 'package:demixr_app/screens/demixing/demixing_screen.dart';
 import 'package:demixr_app/screens/demixing/processing/processing_screen.dart';
 import 'package:demixr_app/screens/download/download_screen.dart';
@@ -152,6 +154,9 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
         ChangeNotifierProvider<LibraryProvider>(
           create: (_) => LibraryProvider(),
         ),
+        ChangeNotifierProvider<AutoMixProvider>(
+          create: (_) => AutoMixProvider(),
+        ),
         ChangeNotifierProxyProvider<LibraryProvider, PlayerProvider>(
           create: (context) => PlayerProvider(systemMediaHandler),
           update: (context, library, player) =>
@@ -235,6 +240,11 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
             page: () => const ProcessingScreen(),
             transitionDuration: const Duration(milliseconds: 180),
             transition: Transition.fadeIn,
+          ),
+          GetPage(
+            name: '/automix',
+            page: () => const AutoMixScreen(),
+            transition: Transition.downToUp,
           ),
           GetPage(
             name: '/player',
